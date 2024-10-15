@@ -30,11 +30,11 @@ Get K3S and [Rancher Desktop](https://rancherdesktop.io/) up and running
 
 2. Configure VM used by Rancher Desktop (Under Preferences, Virtual Machine tab) to be 10GB RAM and 4 vcore
 
-   ![image-20241014145426836](/Users/derekso_1/Work/suse-hands-on-workshops/rancher-desktop-k3s-genai/assets/01-rancher-desktop-preference.png)
+   ![image-20241014145426836](assets/01-rancher-desktop-preference.png)
 
 3. Enable resource monitoring  by navigating to Extensions and Install Resource usage.
 
-   ![image-20241014221056849](/Users/derekso_1/Work/suse-hands-on-workshops/rancher-desktop-k3s-genai/assets/02-rancher-desktop-resource-usage.png)
+   ![image-20241014221056849](assets/02-rancher-desktop-resource-usage.png)
 
    
 
@@ -155,26 +155,25 @@ statefulset.apps/open-webui   1/1     7d
 
 6. Navigate to the `open-webui.example.com` and sign up your own first user account and sign in.
 
-![image-20241015160909483](/Users/derekso_1/Work/suse-hands-on-workshops/rancher-desktop-k3s-genai/assets/03-openwebui-1.png)
+![image-20241015160909483](assets/03-openwebui-1.png)
 
 
 
 7. Download the `mistral` LLM from Open WebUI.
 
-![image-20241015162104492](/Users/derekso_1/Work/suse-hands-on-workshops/rancher-desktop-k3s-genai/assets/03-openwebui-2.png)
+![image-20241015162104492](assets/03-openwebui-2.png)
 
 
 
 8. Let's try to ask questions to see if the local LLM works.
 
-![image-20241015162530225](/Users/derekso_1/Work/suse-hands-on-workshops/rancher-desktop-k3s-genai/assets/03-openwebui-3.png)
+![image-20241015162530225](assets/03-openwebui-3.png)
 
 
 
 ## Deploy the GenAI app to Rancher-managed environment
 
 TBD - Using GitOps / Fleet or ArgoCD approach
-
 
 
 
