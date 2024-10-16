@@ -57,7 +57,6 @@ lima-rancher-desktop   Ready    control-plane,master   41d   v1.21.14+k3s1
 Let's deploy Ollama and Open WebUI onto our local k3s cluster.
 
 
-
 1. Prepare the `open-webui-values-k3s.yaml` file.
 
 ```
@@ -112,9 +111,9 @@ kubectl create ns myfirstgenai
 helm upgrade --install open-webui-ollama open-webui/open-webui \
   --namespace myfirstgenai \
   --create-namespace \
-  --values open-webui-values.yaml
+  --values open-webui-values-k3s.yaml
 ```
-
+### around 3 minutes 
 
 
 4. Check the deployment status
@@ -144,19 +143,16 @@ statefulset.apps/open-webui   1/1     7d
 ```
 
 
+5. Enable port-forwarding for open-webui , open-webui-ollama and open-dgr-svc by navigating to Port Forwarding.
+   * forward `open-webui` to port `8080`
+   * forward `open-webui-ollama` to port `11434`
 
-5. The open webui is accessible via your localhost. Let's define the local DNS entry (e.g. `/etc/hosts` file) in our laptop.
-
-```
-192.168.64.2 	open-webui.example.com
-```
-
+   ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-1)
 
 
-6. Navigate to the `open-webui.example.com` and sign up your own first user account and sign in.
+6. Navigate to the `[open-webui.example.com](http://localhost:8080/)` and sign up your own first user account and sign in.
 
 ![image-20241015160909483](assets/03-openwebui-1.png)
-
 
 
 7. Download the `mistral` LLM from Open WebUI.
@@ -164,12 +160,56 @@ statefulset.apps/open-webui   1/1     7d
 ![image-20241015162104492](assets/03-openwebui-2.png)
 
 
-
 8. Let's try to ask questions to see if the local LLM works.
 
 ![image-20241015162530225](assets/03-openwebui-3.png)
 
+## Deploy the OpenDGR to Rancher-managed environment
 
+Let's deploy OpenDGR onto our local k3s cluster.
+
+1.  OpenDGR Deployment with a single line curl command 
+```
+curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/heads/master/manifest/open_dgr.yaml | kubectl apply -f -
+```
+
+ ![04-opendgr-console-install](assets/04-opendgr-console-install-1.png)
+
+
+2. Enable port-forwarding for open-webui , open-webui-ollama and open-dgr-svc by navigating to Port Forwarding.
+   * forward `open-dgr-svc` to port `18080`
+
+   ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-2)
+
+3. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with manager.
+   * Open DGR - default manager 帳號、密碼
+   * username: manager
+   * password: manager123
+   * ![image-20241015160909483](assets/04-opendgrui-1.png) 
+
+4.  Navigate to API registration.
+  ![image-20241015160909483](assets/04-opendgrui-2.png)  
+
+5.  Navigate to API registration.
+  ![image-20241015160909483](assets/04-opendgrui-3.png)  
+
+6.  test curl the ollama api with command
+```
+curl http://127.0.0.1:11434/api/chat -d '
+{
+  "model": "mistral",
+  "stream": false,
+  "messages": [
+    { "role": "user", "content": "why is the sky blue?  please answer in less than 10 words." }
+  ]
+} '
+```
+
+7.  Navigate to API registration.
+![image-20241015160909483](assets/04-opendgrui-4.png)  
+
+8.  Navigate to API registration.
+![image-20241015160909483](assets/04-opendgrui-5.png)  
 
 ## Deploy the GenAI app to Rancher-managed environment
 
