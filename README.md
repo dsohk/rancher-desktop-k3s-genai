@@ -41,18 +41,22 @@ Get K3S and [Rancher Desktop](https://rancherdesktop.io/) up and running
 
 2. Configure VM used by Rancher Desktop (Under Preferences, Virtual Machine tab) to be 10GB RAM and 4 vcore
 
-  ![01-rancher-desktop-preference](assets/01-rancher-desktop-preference.png)
+![01-rancher-desktop-preference](assets/01-rancher-desktop-preference.png)
 
 3. Configure Container Engine used by Rancher Desktop (Under Preferences, Container Engine tab) to dockerd(moby)
 
-![02-rancher-desktop-container-engine](assets/02-rancher-desktop-container-engine.png)
+![01-rancher-desktop-container-engine](assets/01-rancher-desktop-container-engine.png)
 
-4. Enable resource monitoring by navigating to Extensions and Install Resource usage.
+4. Configure Kubernetes Version used by Rancher Desktop (Under Preferences, Kubernetes tab) to v1.28.5
 
-![02-rancher-desktop-extension-install-resource-usage](assets/02-rancher-desktop-extension-install-resource-usage.png)
+![01-rancher-desktop-container-engine](assets/01-rancher-desktop-k8s-version.png)
 
-5. 7. Check Resource usage dashboard by navigating to Resource usage
-![02-rancher-desktop-resource-usage](assets/02-rancher-desktop-resource-usage.png)
+5. Enable resource monitoring by navigating to Extensions and Install Resource usage.
+
+![01-rancher-desktop-extension-install-resource-usage](assets/01-rancher-desktop-extension-install-resource-usage.png)
+
+5. Check Resource usage dashboard by navigating to Resource usage
+![01-rancher-desktop-resource-usage](assets/01-rancher-desktop-resource-usage.png)
 
 6. After the Kubernetes services (k3s) is up and running, we can open a terminal console to access to the cluster.
    Open your terminal, you should now have access to your local K3S cluster.
