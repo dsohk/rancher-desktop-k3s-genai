@@ -159,23 +159,23 @@ statefulset.apps/open-webui   1/1     7d
    * forward `open-webui` to port `8080`
    * forward `open-webui-ollama` to port `11434`
 
-   ![image-20241016205503](assets/02-rancher-desktop-port-forwarding-1)
+![02-rancher-desktop-port-forwarding-1](assets/02-rancher-desktop-port-forwarding-1.png)
 
 
 6. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
 
-![image-20241015160909483](assets/03-openwebui-1.png)
+![02-openwebui-1](assets/02-openwebui-1.png)
 
 
 7. Download the `mistral` LLM from Open WebUI.
 
-![image-20241015162104492](assets/03-openwebui-2.png)
+![02-openwebui-2](assets/02-openwebui-2.png)
 
 
 8. Let's try to ask questions to see if the local LLM works.
-`why is the sky blue?  please answer in less than 10 words`
+   For example: `why is the sky blue?  please answer in less than 10 words`
 
-![image-20241015162530225](assets/03-openwebui-3.png)
+![02-openwebui-3](assets/02-openwebui-3.png)
 
 ## Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
 
@@ -186,25 +186,21 @@ Let's deploy OpenDGR onto our local k3s cluster.
 curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/heads/master/manifest/open_dgr.yaml | kubectl apply -f -
 ```
 
- ![04-opendgr-console-install](assets/04-opendgr-console-install-1.png)
-
-
 2. Enable port-forwarding for open-webui , open-webui-ollama and open-dgr-svc by navigating to Port Forwarding.
    * forward `open-dgr-svc` to port `18080`
 
-   ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-2)
+   ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-2.png)
 
-3. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with manager.
-   * Open DGR - default manager 帳號、密碼
-   * username: manager
-   * password: manager123
-   * ![image-20241015160909483](assets/04-opendgrui-1.png) 
+3. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with OpenDGR manager.
+* 登入帳號: manager
+* 密碼: manager123
+![image-20241015160909483](assets/03-opendgrui-1.png) 
 
 4.  Navigate to API registration.
-  ![image-20241015160909483](assets/04-opendgrui-2.png)  
+  ![image-20241015160909483](assets/03-opendgrui-2.png)  
 
-5.  Navigate to API registration.
-  ![image-20241015160909483](assets/04-opendgrui-3.png)  
+5.  Navigate to API Test.
+  ![image-20241015160909483](assets/03-opendgrui-3.png)  
 
 6.  test curl the ollama api with command
 ```
@@ -219,9 +215,9 @@ curl http://127.0.0.1:11434/api/chat -d '
 ```
 
 7.  Navigate to API registration.
-![image-20241015160909483](assets/04-opendgrui-4.png)  
+![image-20241015160909483](assets/03-opendgrui-4.png)  
 
 8.  Navigate to API registration.
-![image-20241015160909483](assets/04-opendgrui-5.png)  
+![image-20241015160909483](assets/03-opendgrui-5.png)  
 
 
