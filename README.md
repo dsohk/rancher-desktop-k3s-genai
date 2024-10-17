@@ -2,18 +2,18 @@
 
 In this session, we're diving into an exciting lineup of tools and technologies to empower your development and deployment processes. 
 
-Rancher Desktop with K3s: Transitioning into container orchestration, we'll set up a local Kubernetes environment using Rancher Desktop and K3s. This setup will simulate a production-like environment, enabling you to test and refine your deployments effectively.
+**Rancher Desktop with K3s**: Transitioning into container orchestration, we'll set up a local Kubernetes environment using Rancher Desktop and K3s. This setup will simulate a production-like environment, enabling you to test and refine your deployments effectively.
 
-OpenWebUI with Ollama: OpenWebUI is a GenAI App with intuitive interface integration to AI capabilities seamlessly, we'll explore how to use Mistral LLM with API to enhances the development process by providing advanced functionalities and insights, making the application smarter and more intuitive. 
+**OpenWebUI with Ollama**: OpenWebUI is a GenAI App with intuitive interface integration to AI capabilities seamlessly, we'll explore how to use Mistral LLM with API to enhances the development process by providing advanced functionalities and insights, making the application smarter and more intuitive. 
 
-OpenDGR API Gateway: Facilitates secure and efficient communication between different services in the application, crucial for a microservices architecture. 
+**OpenDGR API Gateway**: Facilitates secure and efficient communication between different services in the application, crucial for a microservices architecture. 
 
-Rancher Fleet for Production Deployment: Finally, we'll deploy our applications to a production environment using Rancher Fleet. You'll learn how to automate and manage large-scale deployments, ensuring consistency and reliability across your infrastructure.
+**Rancher Fleet**: Finally, we'll deploy our applications to a production environment using Rancher Fleet. You'll learn how to automate and manage large-scale deployments, ensuring consistency and reliability across your infrastructure.
 
 By the end of this workshop, you'll have a comprehensive understanding of these tools and how they can streamline your development workflow from local testing to production deployment. Let's get started and make the most of this collaborative learning experience!
 
 
-Table of Contents:
+## Table of Contents:
 
 Task 1 - Setup Rancher Desktop and K3S
 Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
@@ -35,31 +35,33 @@ To complete this lab, you need to have a laptop (Quad core, 16GB RAM and 50GB fr
 Setup the development environment. Intend to develop everything within containers.
 
 
-
 Get K3S and [Rancher Desktop](https://rancherdesktop.io/) up and running
 
 1. Download from [Rancher Desktop](https://rancherdesktop.io/) website and install the latest stable version of Rancher Desktop application (v1.16 at the time of this writing) on your laptop.
 
 2. Configure VM used by Rancher Desktop (Under Preferences, Virtual Machine tab) to be 10GB RAM and 4 vcore
 
-   ![image-20241014145426836](assets/01-rancher-desktop-preference.png)
+  ![01-rancher-desktop-preference](assets/01-rancher-desktop-preference.png)
 
-3. Enable resource monitoring  by navigating to Extensions and Install Resource usage.
+3. Configure Container Engine used by Rancher Desktop (Under Preferences, Container Engine tab) to dockerd(moby)
 
-   ![image-20241014221056849](assets/02-rancher-desktop-resource-usage.png)
+![02-rancher-desktop-container-engine](assets/02-rancher-desktop-container-engine.png)
 
-   
+4. Enable resource monitoring by navigating to Extensions and Install Resource usage.
 
-4. After the Kubernetes services (k3s) is up and running, we can open a terminal console to access to the cluster.
+![02-rancher-desktop-extension-install-resource-usage](assets/02-rancher-desktop-extension-install-resource-usage.png)
 
-5. Open your terminal, you should now have access to your local K3S cluster.
+5. 7. Check Resource usage dashboard by navigating to Resource usage
+![02-rancher-desktop-resource-usage](assets/02-rancher-desktop-resource-usage.png)
+
+6. After the Kubernetes services (k3s) is up and running, we can open a terminal console to access to the cluster.
+   Open your terminal, you should now have access to your local K3S cluster.
 
 ```
 ❯ kubectl get node
 NAME                   STATUS   ROLES                  AGE   VERSION
 lima-rancher-desktop   Ready    control-plane,master   41d   v1.21.14+k3s1
 ```
-
 
 
 ## Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
@@ -105,7 +107,7 @@ service:
 ```
 
 
-1. Add helm repo for Open WebUI.
+2. Add helm repo for Open WebUI.
 
 ```
 helm repo add open-webui https://helm.openwebui.com/
@@ -123,8 +125,6 @@ helm upgrade --install open-webui-ollama open-webui/open-webui \
   --create-namespace \
   --values open-webui-values-k3s.yaml
 ```
-### around 3 minutes 
-
 
 4. Check the deployment status
 
@@ -171,8 +171,7 @@ statefulset.apps/open-webui   1/1     7d
 
 
 8. Let's try to ask questions to see if the local LLM works.
-
-why is the sky blue?  please answer in less than 10 words
+`why is the sky blue?  please answer in less than 10 words`
 
 ![image-20241015162530225](assets/03-openwebui-3.png)
 
