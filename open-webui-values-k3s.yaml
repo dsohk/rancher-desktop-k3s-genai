@@ -13,6 +13,7 @@ ollama:
     type: ClusterIP
   gpu:
     enabled: false
+  models: ["mistral:7b"]
   persistentVolume:
     enabled: true
     size: 20Gi

@@ -75,6 +75,7 @@ ollama:
     type: ClusterIP
   gpu:
     enabled: false
+  models: ["mistral:7b"]
   persistentVolume:
     enabled: true
     size: 20Gi
@@ -92,14 +93,9 @@ ingress:
 service:
   type: NodePort
 ```
-1.  
-```
-To be update open-webui-values-k3s Deployment with a single line curl command 
-curl -s https://raw.githubusercontent.com/<to be update later on>open-webui-values-k3s.yaml | kubectl apply -f -
-```
 
 
-2. Add helm repo for Open WebUI.
+1. Add helm repo for Open WebUI.
 
 ```
 helm repo add open-webui https://helm.openwebui.com/
