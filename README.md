@@ -249,20 +249,20 @@ Rancher Fleet can manage deployments from git of raw Kubernetes YAML, Helm chart
 
 1. Go to Rancher Server home page, Click the top left `☰` 3-line bar icon to expand the navigation menu, click `Continuous Delivery`
 
-![rancher-fleet-homepage](../images/rancher-fleet-homepage.png)
+![rancher-fleet-homepage](assets/04-rancher-fleet-homepage.png)
 
 Before we proced, let's verify if we can see all our clusters in Continous Delivery
 
-![rancher-fleet-cluster-list](../images/rancher-fleet-cluster-list.png)
+![rancher-fleet-cluster-list](assets/04-rancher-fleet-cluster-list.png)
 
 With Rancher Fleet, one can manage individual or group of clusters. Managing cluster via Group reduces adminstrative efforts. 
 
 
-2. Now we will create a Cluster Group.
+1. Now we will create a Cluster Group.
 
 Navigate to `Cluster Group` and click on `Create`. 
 
-![rancher-fleet-cluster-group-create](../images/rancher-fleet-cluster-group-create.png)
+![rancher-fleet-cluster-group-create](assets/04-rancher-fleet-cluster-group-create.png)
 
 Give it a name `development`
 
@@ -276,20 +276,20 @@ Value:`dev`
 
 we are going to use the same Label which was used to create `azure-rke2-cluster` and `aliyun-rke2-cluster`.
 
-![rancher-fleet-cluster-group-dev](../images/rancher-fleet-cluster-group-dev.png)
+![rancher-fleet-cluster-group-dev](assets/04-rancher-fleet-cluster-group-dev.png)
  
 Once you key in the key:value pair, Rancher will use the selector labels to indentify the clusters to be associated with our newly created cluster group in Rancher Continuous Delivery. You should see it show matches all 2 existing clusters. 
 
 Click on `Create` which will create our first Cluster Group.
 
-![rancher-fleet-cluster-group-added](../images/rancher-fleet-cluster-group-added.png)
+![rancher-fleet-cluster-group-added](assets/04-rancher-fleet-cluster-group-added.png)
 
 we can click into the `development` cluster group for resources details.
 
-![rancher-fleet-cluster-group-details](../images/rancher-fleet-cluster-group-details.png)
+![rancher-fleet-cluster-group-details](assets/04-rancher-fleet-cluster-group-details.png)
 
 
-3. Configure a git repository
+1. Configure a git repository
 
 we will use the fleet-examples git repo to deploy the Kubernetes sample guestbook application. The app will be deployed into the default namespace.
 
@@ -297,7 +297,7 @@ you can also fork the fleet-examples Git Repository(https://github.com/rancher/f
 
 In the `Git Repos` page click on `Add Repository`
 
-![rancher-fleet-git-repo-add](../images/rancher-fleet-git-repo-add.png)
+![rancher-fleet-git-repo-add](assets/04-rancher-fleet-git-repo-add.png)
 
 - Enter `fleet-examples` as your git repo `Name`
 - Enter `https://github.com/rancher/fleet-examples` (the fleet-examples git repo URL) in `Repository URL`  
@@ -306,21 +306,21 @@ In the `Git Repos` page click on `Add Repository`
 
 Sample output of the GitRepo configuration below
 
-![rancher-fleet-git-repo-add-details](../images/rancher-fleet-git-repo-add-details.png)
+![rancher-fleet-git-repo-add-details](assets/04-rancher-fleet-git-repo-add-details.png)
 
 in the Step2, Deploy to `Target` dropdown list, select the Cluster Group we created previosuly `development`. 
 
 
-![rancher-fleet-git-repo-add-details-step2](../images/rancher-fleet-git-repo-add-details-step2.png)
+![rancher-fleet-git-repo-add-details-step2](assets/04-rancher-fleet-git-repo-add-details-step2.png)
 
 
 We have successfully completed Rancher Contious Delivery (GitOps) configuration. 
 
-![rancher-fleet-git-repo-list](../images/rancher-fleet-git-repo-list.png)
+![rancher-fleet-git-repo-list](assets/04-rancher-fleet-git-repo-list.png)
 
 click into the `fleet-examples` git repo, you can expect the example app will be deployed to the cluster group in a minute.
 
-![rancher-fleet-git-repo-status](../images/rancher-fleet-git-repo-status.png)
+![rancher-fleet-git-repo-status](assets/04-rancher-fleet-git-repo-status.png)
 
 When there is any commit or updates in the git repo, fleet by default will checks the git repo changes every 15 seconds, then fleet will deploy new changes into the cluster group automatically.
 
