@@ -5,8 +5,10 @@ In this session, we're diving into an exciting lineup of tools and technologies 
 **Rancher Desktop with K3s**: Transitioning into container orchestration, we'll set up a local Kubernetes environment using Rancher Desktop and K3s. This setup will simulate a production-like environment, enabling you to test and refine your deployments effectively.
 
 **OpenWebUI with Ollama**: OpenWebUI is a GenAI App with intuitive interface integration to AI capabilities seamlessly, we'll explore how to use Mistral LLM with API to enhances the development process by providing advanced functionalities and insights, making the application smarter and more intuitive. 
+Reference: https://docs.openwebui.com/
 
 **OpenDGR API Gateway**: Facilitates secure and efficient communication between different services in the application, crucial for a microservices architecture. 
+
 
 **Rancher Fleet**: Finally, we'll deploy our applications to a production environment using Rancher Fleet. You'll learn how to automate and manage large-scale deployments, ensuring consistency and reliability across your infrastructure.
 
@@ -64,14 +66,13 @@ Get K3S and [Rancher Desktop](https://rancherdesktop.io/) up and running
 ```
 ❯ kubectl get node
 NAME                   STATUS   ROLES                  AGE   VERSION
-lima-rancher-desktop   Ready    control-plane,master   41d   v1.21.14+k3s1
+lima-rancher-desktop   Ready    control-plane,master   76d   v1.28.5+k3s1
 ```
 
 
-## Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
+## Task 2 - Deploy GenAI app Open WebUI with Ollama into Rancher Desktop local K3s cluster
 
-Let's deploy Ollama and Open WebUI onto our local k3s cluster.
-
+Let's deploy GenAI app Open WebUI with ollama into our local k3s cluster.
 
 1. Prepare the `open-webui-values-k3s.yaml` file.
 
@@ -112,16 +113,13 @@ service:
 
 
 2. Add helm repo for Open WebUI.
-
 ```
 helm repo add open-webui https://helm.openwebui.com/
 helm repo update
 ```
 
 
-
 3. Deploy open-webui with embedded llama onto your local k3s
-
 ```
 kubectl create ns myfirstgenai
 helm upgrade --install open-webui-ollama open-webui/open-webui \
@@ -161,7 +159,7 @@ statefulset.apps/open-webui   1/1     7d
    * forward `open-webui` to port `8080`
    * forward `open-webui-ollama` to port `11434`
 
-   ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-1)
+   ![image-20241016205503](assets/02-rancher-desktop-port-forwarding-1)
 
 
 6. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
