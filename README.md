@@ -162,7 +162,7 @@ statefulset.apps/open-webui   1/1     7d
 ![02-rancher-desktop-port-forwarding-1](assets/02-rancher-desktop-port-forwarding-1.png)
 
 
-6. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
+6. Navigate to the `http://localhost:8080` and sign up your own first user account and sign in.
 
 ![02-openwebui-1](assets/02-openwebui-1.png)
 
@@ -176,6 +176,18 @@ statefulset.apps/open-webui   1/1     7d
    For example: `why is the sky blue?  please answer in less than 10 words`
 
 ![02-openwebui-3](assets/02-openwebui-3.png)
+
+9. Let's try test the ollama api with command curl
+```
+curl http://localhost:11434/api/chat -d '
+{
+  "model": "mistral",
+  "stream": false,
+  "messages": [
+    { "role": "user", "content": "why is the sky blue?  please answer in less than 10 words." }
+  ]
+} '
+```
 
 ## Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
 
@@ -191,33 +203,47 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 
    ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-2.png)
 
-3. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with OpenDGR manager.
+3. Navigate to the `http://localhost:18080/dgrv4/ac4/login` and login with OpenDGR manager.
 * 登入帳號: manager
 * 密碼: manager123
-![image-20241015160909483](assets/03-opendgrui-1.png) 
+![03-opendgrui-login](assets/03-opendgrui-login.png) 
 
-4.  Navigate to API registration.
-  ![image-20241015160909483](assets/03-opendgrui-2.png)  
+4.  Navigate to API registry (Under API Management, API Registry).
+* Target URL : http://localhost:11434/api/chat
+* API Name : chat
+* digiRunner Proxy Path : chat
+* Http Methods : POST
+* No Auth : Yes
+![03-opendgrui-dashboard](assets/03-opendgrui-api-registry.png)  
 
-5.  Navigate to API Test.
-  ![image-20241015160909483](assets/03-opendgrui-3.png)  
 
-6.  test curl the ollama api with command
+5.  Navigate to API List, Enable Chat API.
+![03-opendgrui-api-list](assets/03-opendgrui-api-list.png)  
+
+6.  Navigate to API Test and try test the ollama api
+![03-opendgrui-api-test](assets/03-opendgrui-api-test.png)
+* Target URL : http://localhost:8080/chat
+* Http Methods : POST
+* http body:
 ```
-curl http://127.0.0.1:11434/api/chat -d '
 {
   "model": "mistral",
   "stream": false,
   "messages": [
     { "role": "user", "content": "why is the sky blue?  please answer in less than 10 words." }
   ]
-} '
+} 
 ```
 
-7.  Navigate to API registration.
-![image-20241015160909483](assets/03-opendgrui-4.png)  
+7. API test result with ollama.
+![image-20241015160909483](assets/03-opendgrui-ollama-api-test.png)  
 
-8.  Navigate to API registration.
-![image-20241015160909483](assets/03-opendgrui-5.png)  
+## Conclusion
+
+We successfully set up a Rancher Desktop with K3s to create a local Kubernetes environment. Next, we deployed the GenAI application, OpenWebUI with Ollama, into the local K3s cluster. Finally, we secured the GenAI app using the OpenDGR API gateway. 
+
+As the next step, we will demo to utilize Rancher Fleet to deploy the GenAI applications into the production environment, ensuring scalability and reliability
+
+By following these steps, users can effectively simulate a production environment, test deployments, and manage large-scale applications.
 
 
