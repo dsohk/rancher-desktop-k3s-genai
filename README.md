@@ -17,9 +17,9 @@ By the end of this workshop, you'll have a comprehensive understanding of these 
 
 ## Table of Contents:
 
-Task 1 - Setup Rancher Desktop and K3S
-Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
-Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
+* Task 1 - Setup Rancher Desktop and K3S
+* Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
+* Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
 
 
 ## System Requirements
