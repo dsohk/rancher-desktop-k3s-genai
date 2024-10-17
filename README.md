@@ -18,7 +18,7 @@ To complete this lab, you need to have a laptop (Quad core, 16GB RAM and 50GB fr
 
 
 
-## Task 1Setup Rancher Desktop and K3S
+## Task 1 - Setup Rancher Desktop and K3S
 
 Setup the development environment. Intend to develop everything within containers.
 
@@ -92,10 +92,11 @@ ingress:
 service:
   type: NodePort
 ```
-<!-- 1.  open-webui-values-k3s Deployment with a single line curl command 
+1.  
 ```
+To be update open-webui-values-k3s Deployment with a single line curl command 
 curl -s https://raw.githubusercontent.com/<to be update later on>open-webui-values-k3s.yaml | kubectl apply -f -
-``` -->
+```
 
 
 2. Add helm repo for Open WebUI.
@@ -153,7 +154,7 @@ statefulset.apps/open-webui   1/1     7d
    ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-1)
 
 
-6. Navigate to the `[open-webui.example.com](http://localhost:8080/)` and sign up your own first user account and sign in.
+6. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
 
 ![image-20241015160909483](assets/03-openwebui-1.png)
 
