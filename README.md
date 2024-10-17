@@ -1,12 +1,24 @@
-# Develop & Deploy GenAI App with Ollama, Open WebUI with K3S in Rancher Desktop
+# Introduction - Develop & Deploy GenAI App with Ollama, Open WebUI with K3S in Rancher Desktop
 
-In this guide, we are going to show you how to ...
+In this session, we're diving into an exciting lineup of tools and technologies to empower your development and deployment processes. 
 
+Rancher Desktop with K3s: Transitioning into container orchestration, we'll set up a local Kubernetes environment using Rancher Desktop and K3s. This setup will simulate a production-like environment, enabling you to test and refine your deployments effectively.
+
+OpenWebUI with Ollama: OpenWebUI is a GenAI App with intuitive interface integration to AI capabilities seamlessly, we'll explore how to use Mistral LLM with API to enhances the development process by providing advanced functionalities and insights, making the application smarter and more intuitive. 
+
+OpenDGR API Gateway: Facilitates secure and efficient communication between different services in the application, crucial for a microservices architecture. 
+
+Rancher Fleet for Production Deployment: Finally, we'll deploy our applications to a production environment using Rancher Fleet. You'll learn how to automate and manage large-scale deployments, ensuring consistency and reliability across your infrastructure.
+
+By the end of this workshop, you'll have a comprehensive understanding of these tools and how they can streamline your development workflow from local testing to production deployment. Let's get started and make the most of this collaborative learning experience!
 
 
 Table of Contents:
 
-[TOC]
+Task 1 - Setup Rancher Desktop and K3S
+Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
+Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
+
 
 ## System Requirements
 
@@ -50,9 +62,7 @@ lima-rancher-desktop   Ready    control-plane,master   41d   v1.21.14+k3s1
 
 
 
-
-
-## Task 2 - Deploy GenAI app with Ollama and OpenWebUI onto Rancher Desktop local K3s cluster
+## Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
 
 Let's deploy Ollama and Open WebUI onto our local k3s cluster.
 
@@ -212,90 +222,5 @@ curl http://127.0.0.1:11434/api/chat -d '
 
 8.  Navigate to API registration.
 ![image-20241015160909483](assets/04-opendgrui-5.png)  
-
-
-## Deploy the GenAI app to Rancher-managed environment with Rancher Fleet (Demo) 
-
-Rancher Fleet is a Continuous Delivery (GitOps) tool to manage deployments from a single Kubernetes cluster to large-scale deployment of Multiple Kubernetes clusters.
-
-Rancher Fleet can manage deployments from git of raw Kubernetes YAML, Helm charts, or Kustomize or any combination of the three. Regardless of the source all resources are dynamically turned into Helm charts and Helm is used as the engine to deploy everything in the cluster. This gives a high degree of control, consistency, and auditability.
-
-
-1. Go back to Rancher Server home page, Click the top left `☰` 3-line bar icon to expand the navigation menu, click `Continuous Delivery`
-
-![rancher-fleet-homepage](assets/rancher-fleet-homepage.png)
-
-Before we proced, let's verify if we can see all our clusters in Continous Delivery
-
-![rancher-fleet-cluster-list](assets/rancher-fleet-cluster-list.png)
-
-With Rancher Fleet, one can manage individual or group of clusters. Managing cluster via Group reduces adminstrative efforts. 
-
-
-1. Now we will create a Cluster Group.
-
-Navigate to `Cluster Group` and click on `Create`. 
-
-![rancher-fleet-cluster-group-create](assets/rancher-fleet-cluster-group-create.png)
-
-Give it a name `development`
-
-Under Cluster Selector , click **Add Rule** provide the following values
-
-Key:`env`
-
-Operator: `in list`
-
-Value:`dev` 
-
-we are going to use the same Label which was used to create `azure-rke2-cluster` and `aliyun-rke2-cluster`.
-
-![rancher-fleet-cluster-group-dev](assets/rancher-fleet-cluster-group-dev.png)
- 
-Once you key in the key:value pair, Rancher will use the selector labels to indentify the clusters to be associated with our newly created cluster group in Rancher Continuous Delivery. You should see it show matches all 2 existing clusters. 
-
-Click on `Create` which will create our first Cluster Group.
-
-![rancher-fleet-cluster-group-added](assets/rancher-fleet-cluster-group-added.png)
-
-we can click into the `development` cluster group for resources details.
-
-![rancher-fleet-cluster-group-details](assets/rancher-fleet-cluster-group-details.png)
-
-
-3. Configure a git repository
-
-we will use the fleet-examples git repo to deploy the Kubernetes sample guestbook application. The app will be deployed into the default namespace.
-
-you can also fork the fleet-examples Git Repository(https://github.com/rancher/fleet-examples) for testing.
-
-In the `Git Repos` page click on `Add Repository`
-
-![rancher-fleet-git-repo-add](assets/rancher-fleet-git-repo-add.png)
-
-- Enter `fleet-examples` as your git repo `Name`
-- Enter `https://github.com/rancher/fleet-examples` (the fleet-examples git repo URL) in `Repository URL`  
-
-- scroll to the bottom and enter Paths: `simple` , with all the parameters default setting then click **Next**
-
-Sample output of the GitRepo configuration below
-
-![rancher-fleet-git-repo-add-details](assets/rancher-fleet-git-repo-add-details.png)
-
-in the Step2, Deploy to `Target` dropdown list, select the Cluster Group we created previosuly `development`. 
-
-
-![rancher-fleet-git-repo-add-details-step2](assets/rancher-fleet-git-repo-add-details-step2.png)
-
-
-We have successfully completed Rancher Contious Delivery (GitOps) configuration. 
-
-![rancher-fleet-git-repo-list](assets/rancher-fleet-git-repo-list.png)
-
-click into the `fleet-examples` git repo, you can expect the example app will be deployed to the cluster group in a minute.
-
-![rancher-fleet-git-repo-status](assets/rancher-fleet-git-repo-status.png)
-
-When there is any commit or updates in the git repo, fleet by default will checks the git repo changes every 15 seconds, then fleet will deploy new changes into the cluster group automatically.
 
 
