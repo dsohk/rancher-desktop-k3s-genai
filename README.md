@@ -222,9 +222,9 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 
 6.  Navigate to API Test and try test the ollama api
 
-* Target URL : http://localhost:8080/chat
+* Target URL : http://localhost:18080/chat
 * Http Methods : POST
-* http body:
+* Http body:
 ```
 {
   "model": "mistral",
