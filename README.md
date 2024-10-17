@@ -221,7 +221,7 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 ![03-opendgrui-api-list](assets/03-opendgrui-api-list.png)  
 
 6.  Navigate to API Test and try test the ollama api
-![03-opendgrui-api-test](assets/03-opendgrui-api-test.png)
+
 * Target URL : http://localhost:8080/chat
 * Http Methods : POST
 * http body:
@@ -234,6 +234,7 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
   ]
 } 
 ```
+![03-opendgrui-api-test](assets/03-opendgrui-api-test.png)
 
 7. API test result with ollama.
 ![image-20241015160909483](assets/03-opendgrui-ollama-api-test.png)  
