@@ -2,15 +2,13 @@
 
 In this session, we're diving into an exciting lineup of tools and technologies to empower your development and deployment processes. 
 
-**Rancher Desktop with K3s**: Transitioning into container orchestration, we'll set up a local Kubernetes environment using Rancher Desktop and K3s. This setup will simulate a production-like environment, enabling you to test and refine your deployments effectively.
+**Rancher Desktop with K3s**: Rancher Desktop is an open-source application developed by SUSE that brings Kubernetes and container management to your desktop, we'll set up a local Kubernetes environment using Rancher Desktop and K3s. This setup will simulate a production-like environment, enabling you to test and refine your deployments effectively.
 
-**OpenWebUI with Ollama**: OpenWebUI is a GenAI App with intuitive interface integration to AI capabilities seamlessly, we'll explore how to use Mistral LLM with API to enhances the development process by providing advanced functionalities and insights, making the application smarter and more intuitive. 
-Reference: https://docs.openwebui.com/
+**OpenWebUI with Ollama**: OpenWebUI is a application with an intuitive interface that provides GenAI capabilities, we'll explore how to use Mistral LLM with API to enhances your application development by integrating GenAI advanced functionalities and insights, making the application smarter and more intuitive. 
 
-**OpenDGR API Gateway**: Facilitates secure and efficient communication between different services in the application, crucial for a microservices architecture. 
+**OpenDGR API Gateway**: OpenDGR is an open-source application developed by TPI Software is an API gateway and management solution designed to act as an intermediary between client applications and backend services. It provides a range of features to manage and secure API traffic, ensuring efficient communication and data flow.
 
-
-**Rancher Fleet**: Finally, we'll deploy our applications to multi cluster environment using Rancher Fleet. You'll learn how to automate and manage large-scale deployments, ensuring consistency and reliability across your infrastructure.
+**Rancher Fleet**: Rancher Fleet is a Continuous Delivery (GitOps) tool to manage deployments from a single Kubernetes cluster to large-scale deployment of multiple Kubernetes clusters. We'll deploy our GenAI applications to multi cluster environment using Rancher Fleet to automate and manage large-scale deployments, ensuring consistency and reliability across your infrastructure.
 
 By the end of this workshop, you'll have a comprehensive understanding of these tools and how they can streamline your development workflow from local testing to production deployment. Let's get started and make the most of this collaborative learning experience!
 
@@ -240,11 +238,9 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 7. API test result with ollama.
 ![image-20241015160909483](assets/03-opendgrui-ollama-api-test.png)  
 
-## Task 4 - Multi-Cluster Deployment with Rancher Fleet
+## Task 4 - Multi-Cluster Deployment with Rancher Fleet (Optional)
 
-Rancher Fleet is a Continuous Delivery (GitOps) tool to manage deployments from a single Kubernetes cluster to large-scale deployment of Multiple Kubernetes clusters.
-
-Rancher Fleet can manage deployments from git of raw Kubernetes YAML, Helm charts, or Kustomize or any combination of the three. Regardless of the source all resources are dynamically turned into Helm charts and Helm is used as the engine to deploy everything in the cluster. This gives a high degree of control, consistency, and auditability.
+.
 
 
 1. Go to Rancher Server home page, Click the top left `☰` 3-line bar icon to expand the navigation menu, click `Continuous Delivery`
