@@ -190,7 +190,7 @@ curl http://localhost:11434/api/chat -d '
 
 ## Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
 
-Let's deploy OpenDGR onto our local k3s cluster.
+Let's deploy OpenDGR onto our local k3s cluster for securing the GenAI apps access.
 
 1.  OpenDGR Deployment with a single line curl command 
 ```
@@ -240,7 +240,7 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 
 ## Task 4 - Multi-Cluster Deployment with Rancher Fleet (Optional)
 
-.
+The GenAI app works great! but the steps to manual deploy and update 10 clusters are too time consuming. Lets adopt the GitOps approach to maintain the GenAI app.
 
 
 1. Go to Rancher Server home page, Click the top left `☰` 3-line bar icon to expand the navigation menu, click `Continuous Delivery`
