@@ -202,8 +202,12 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 
    ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-2.png)
 
-3. Check the deployment status
+3. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with OpenDGR manager.
+* 登入帳號: manager
+* 密碼: manager123
+![03-opendgrui-login](assets/03-opendgrui-login.png) 
 
+4. Check the ollama API service internal cluster IP
 ```
 ❯ kubectl get svc -n myfirstgenai
 
@@ -214,13 +218,8 @@ service/open-webui-ollama      ClusterIP   10.43.152.145   <none>        11434/T
 
 ```
 
-4. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with OpenDGR manager.
-* 登入帳號: manager
-* 密碼: manager123
-![03-opendgrui-login](assets/03-opendgrui-login.png) 
-
-1.  Navigate to API registry (Under API Management, API Registry).
-* Target URL : http://<service/open-webui-ollama-clusterIP>:11434/api/chat 
+5.  Navigate to API registry (Under API Management, API Registry).
+* Target URL : http://<service/open-webui-ollama-clusterIP>:11434/api/chat # replace with the ollama API service internal cluster IP above
 * API Name : chat
 * digiRunner Proxy Path : chat
 * Http Methods : POST
@@ -228,10 +227,10 @@ service/open-webui-ollama      ClusterIP   10.43.152.145   <none>        11434/T
 ![03-opendgrui-dashboard](assets/03-opendgrui-api-registry.png)  
 
 
-5.  Navigate to API List, Enable Chat API.
+6.  Navigate to API List, Enable Chat API.
 ![03-opendgrui-api-list](assets/03-opendgrui-api-list.png)  
 
-6.  Navigate to API Test and try test the ollama api
+7.  Navigate to API Test and try test the ollama api
 
 * Target URL : http://localhost:18080/chat
 * Http Methods : POST
@@ -247,7 +246,7 @@ service/open-webui-ollama      ClusterIP   10.43.152.145   <none>        11434/T
 ```
 ![03-opendgrui-api-test](assets/03-opendgrui-api-test.png)
 
-7. API test result with ollama.
+8. API test result with ollama.
 ![image-20241015160909483](assets/03-opendgrui-ollama-api-test.png)  
 
 ## Task 4 - Multi-Cluster Deployment with Rancher Fleet (Optional)
