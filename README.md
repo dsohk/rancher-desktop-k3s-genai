@@ -139,7 +139,7 @@ pod/open-webui-ollama-5d6b97fc9f-kjzqw    1/1     Running   0          7d
 NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 service/open-webui             NodePort    10.43.110.192   <none>        80:32574/TCP   7d
 service/open-webui-pipelines   ClusterIP   10.43.231.90    <none>        9099/TCP       7d
-service/open-webui-ollama      ClusterIP   10.43.152.145   <none>        11434/TCP      7d
+service/open-webui-ollama      ClusterIP   10.43.94.196   <none>        11434/TCP      7d
 
 NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/open-webui-pipelines   1/1     1            1           7d
@@ -214,7 +214,7 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 service/open-webui             NodePort    10.43.110.192   <none>        80:32574/TCP   7d
 service/open-webui-pipelines   ClusterIP   10.43.231.90    <none>        9099/TCP       7d
-service/open-webui-ollama      ClusterIP   10.43.152.145   <none>        11434/TCP      7d
+service/open-webui-ollama      ClusterIP   10.43.94.196   <none>        11434/TCP      7d
 
 ```
 
