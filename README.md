@@ -161,7 +161,7 @@ statefulset.apps/open-webui   1/1     7d
 ![02-rancher-desktop-port-forwarding-1](assets/02-rancher-desktop-port-forwarding-1.png)
 
 
-6. Navigate to the `http://localhost:8080` and sign up your own first user account and sign in.
+6. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
 
 ![02-openwebui-1](assets/02-openwebui-1.png)
 
@@ -178,7 +178,7 @@ statefulset.apps/open-webui   1/1     7d
 
 9. Let's try test the ollama api with command curl
 ```
-curl http://localhost:11434/api/chat -d '
+curl http://127.0.0.1:11434/api/chat -d '
 {
   "model": "mistral",
   "stream": false,
@@ -202,13 +202,25 @@ curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/h
 
    ![image-20241016205503](assets/03-rancher-desktop-port-forwarding-2.png)
 
-3. Navigate to the `http://localhost:18080/dgrv4/ac4/login` and login with OpenDGR manager.
+3. Check the deployment status
+
+```
+❯ kubectl get svc -n myfirstgenai
+
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/open-webui             NodePort    10.43.110.192   <none>        80:32574/TCP   7d
+service/open-webui-pipelines   ClusterIP   10.43.231.90    <none>        9099/TCP       7d
+service/open-webui-ollama      ClusterIP   10.43.152.145   <none>        11434/TCP      7d
+
+```
+
+4. Navigate to the `http://127.0.0.1:18080/dgrv4/ac4/login` and login with OpenDGR manager.
 * 登入帳號: manager
 * 密碼: manager123
 ![03-opendgrui-login](assets/03-opendgrui-login.png) 
 
-4.  Navigate to API registry (Under API Management, API Registry).
-* Target URL : http://localhost:11434/api/chat
+1.  Navigate to API registry (Under API Management, API Registry).
+* Target URL : http://<service/open-webui-ollama-clusterIP>:11434/api/chat 
 * API Name : chat
 * digiRunner Proxy Path : chat
 * Http Methods : POST
