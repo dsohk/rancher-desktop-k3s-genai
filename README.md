@@ -103,9 +103,6 @@ resources:
   limits:
     cpu: "1000m"
     memory: "1Gi"
-ingress:
-  enabled: true
-  host: open-webui.example.com
 service:
   type: NodePort
 ```
