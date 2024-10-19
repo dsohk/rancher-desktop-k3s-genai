@@ -246,9 +246,9 @@ service/open-webui-ollama      ClusterIP   10.43.94.196   <none>        11434/TC
 8. API test result with ollama.
 ![image-20241015160909483](assets/03-opendgrui-ollama-api-test.png)  
 
-## Task 4 - Multi-Cluster Deployment with Rancher Fleet (Optional)
+## Task 4 - Multi-Cluster Deployment with Rancher Fleet (Demo steps)
 
-The GenAI app works great! but the steps to manual deploy and update 10 clusters are too time consuming. Lets adopt the GitOps approach to maintain the GenAI app.
+The GenAI app works great! but the steps to manual deploy and update multiple clusters are too time consuming. Lets adopt the GitOps approach to maintain the GenAI app.
 
 
 1. Go to Rancher Server home page, Click the top left `☰` 3-line bar icon to expand the navigation menu, click `Continuous Delivery`
