@@ -278,7 +278,7 @@ we are going to use the same Label which was used to create `edge01` and `edge02
 
 ![rancher-fleet-cluster-group-edge](assets/04-rancher-fleet-cluster-group-edge.png)
  
-Once you key in the key:value pair, Rancher will use the selector labels to indentify the clusters to be associated with our newly created cluster group in Rancher Continuous Delivery. You should see it show matches all 2 existing clusters. 
+3. Once you key in the key:value pair, Rancher will use the selector labels to indentify the clusters to be associated with our newly created cluster group in Rancher Continuous Delivery. You should see it show matches all 2 existing clusters. 
 
 Click on `Create` which will create our first Cluster Group.
 
@@ -289,7 +289,7 @@ we can click into the `edge` cluster group for resources details.
 ![rancher-fleet-cluster-group-details](assets/04-rancher-fleet-cluster-group-details.png)
 
 
-3. Configure a git repository
+4. Configure a git repository
 
 we will use the fleet-examples git repo to deploy the Kubernetes sample guestbook application. The app will be deployed into the default namespace.
 
@@ -321,7 +321,7 @@ We have successfully completed Rancher Contious Delivery (GitOps) configuration.
 
 ![rancher-fleet-git-repo-list](assets/04-rancher-fleet-git-repo-list.png)
 
-click into the `fleet-examples` git repo, you can expect the example app will be deployed to the cluster group in a minute.
+5. click into the `fleet-examples` git repo, you can expect the example app will be deployed to the cluster group in a minute.
 
 ![rancher-fleet-git-repo-status](assets/04-rancher-fleet-git-repo-status.png)
 
