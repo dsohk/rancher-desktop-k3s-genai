@@ -15,10 +15,9 @@ By the end of this workshop, you'll have a comprehensive understanding of these 
 
 ## Table of Contents:
 
-* Task 1 - Setup Rancher Desktop and K3S
-* Task 2 - Deploy GenAI app OpenWebUI with Ollama into Rancher Desktop local K3s cluster
-* Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
-* Task 4 - Multi-Cluster Deployment with Rancher Fleet  
+* Task 1 - Setup Rancher Desktop and deploy GenAI app OpenWebUI with Ollama
+* Task 2 - Deploy the OpenDGR API gateway protec the GenAI app
+* Task 3 - Multi-Cluster Deployment with Rancher Fleet (Optional)
 
 
 ## System Requirements
@@ -31,7 +30,7 @@ To complete this lab, you need to have a laptop (Quad core, 16GB RAM and 50GB fr
 
 
 
-## Task 1 - Setup Rancher Desktop and K3S
+## Task 1 - Setup Rancher Desktop and Deploy GenAI app Open WebUI with Ollama 
 
 Setup the development environment. Intend to develop everything within containers.
 
@@ -68,12 +67,9 @@ NAME                   STATUS   ROLES                  AGE   VERSION
 lima-rancher-desktop   Ready    control-plane,master   76d   v1.28.5+k3s1
 ```
 
-
-## Task 2 - Deploy GenAI app Open WebUI with Ollama into Rancher Desktop local K3s cluster
-
 Let's deploy GenAI app Open WebUI with ollama into our local k3s cluster.
 
-1. Prepare the `open-webui-values-k3s.yaml` file.
+7. Prepare the `open-webui-values-k3s.yaml` file.
 
 ```
 ollama:
@@ -108,14 +104,14 @@ service:
 ```
 
 
-2. Add helm repo for Open WebUI.
+8. Add helm repo for Open WebUI.
 ```
 helm repo add open-webui https://helm.openwebui.com/
 helm repo update
 ```
 
 
-3. Deploy open-webui with embedded llama onto your local k3s
+9. Deploy open-webui with embedded llama onto your local k3s
 ```
 kubectl create ns myfirstgenai
 helm upgrade --install open-webui-ollama open-webui/open-webui \
@@ -124,7 +120,7 @@ helm upgrade --install open-webui-ollama open-webui/open-webui \
   --values open-webui-values-k3s.yaml
 ```
 
-4. Check the deployment status
+10. Check the deployment status
 
 ```
 ❯ kubectl get all -n myfirstgenai
@@ -151,29 +147,29 @@ statefulset.apps/open-webui   1/1     7d
 ```
 
 
-5. Enable port-forwarding for open-webui , open-webui-ollama and open-dgr-svc by navigating to Port Forwarding.
+11. Enable port-forwarding for open-webui , open-webui-ollama and open-dgr-svc by navigating to Port Forwarding.
    * forward `open-webui` to port `8080`
    * forward `open-webui-ollama` to port `11434`
 
 ![02-rancher-desktop-port-forwarding-1](assets/02-rancher-desktop-port-forwarding-1.png)
 
 
-6. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
+12. Navigate to the `http://127.0.0.1:8080` and sign up your own first user account and sign in.
 
 ![02-openwebui-1](assets/02-openwebui-1.png)
 
 
-7. Download the `mistral` LLM from Open WebUI.
+13. Download the `mistral` LLM from Open WebUI.
 
 ![02-openwebui-2](assets/02-openwebui-2.png)
 
 
-8. Let's try to ask questions to see if the local LLM works.
+14. Let's try to ask questions to see if the local LLM works.
    For example: `why is the sky blue?  please answer in less than 10 words`
 
 ![02-openwebui-3](assets/02-openwebui-3.png)
 
-9. Let's try test the ollama api with command curl
+15. Let's try test the ollama api with command curl
 ```
 curl http://127.0.0.1:11434/api/chat -d '
 {
@@ -185,7 +181,7 @@ curl http://127.0.0.1:11434/api/chat -d '
 } '
 ```
 
-## Task 3 - Deploy the OpenDGR API gateway protec the GenAI app
+## Task 2 - Deploy the OpenDGR API gateway protec the GenAI app
 
 Let's deploy OpenDGR onto our local k3s cluster for securing the GenAI apps access.
 
@@ -246,10 +242,10 @@ service/open-webui-ollama      ClusterIP   10.43.94.196   <none>        11434/TC
 8. API test result with ollama.
 ![image-20241015160909483](assets/03-opendgrui-ollama-api-test.png)  
 
-## Task 4 - Multi-Cluster Deployment with Rancher Fleet (Demo steps)
+## Task 3 - Multi-Cluster Deployment with Rancher Fleet (Optional)
 
-The GenAI app works great! but the steps to manual deploy and update multiple clusters are too time consuming. Lets adopt the GitOps approach to maintain the GenAI app.
-
+The GenAI app works great! but the steps to manual deploy and update multiple clusters are too time consuming. 
+Lets adopt the GitOps approach to maintain the GenAI app.
 
 1. Go to Rancher Server home page, Click the top left `☰` 3-line bar icon to expand the navigation menu, click `Continuous Delivery`
 
@@ -262,13 +258,13 @@ Before we proced, let's verify if we can see all our clusters in Continous Deliv
 With Rancher Fleet, one can manage individual or group of clusters. Managing cluster via Group reduces adminstrative efforts. 
 
 
-1. Now we will create a Cluster Group.
+2. Now we will create a Cluster Group.
 
 Navigate to `Cluster Group` and click on `Create`. 
 
 ![rancher-fleet-cluster-group-create](assets/04-rancher-fleet-cluster-group-create.png)
 
-Give it a name `development`
+Give it a name `edge`
 
 Under Cluster Selector , click **Add Rule** provide the following values
 
@@ -276,11 +272,11 @@ Key:`env`
 
 Operator: `in list`
 
-Value:`dev` 
+Value:`edge` 
 
-we are going to use the same Label which was used to create `azure-rke2-cluster` and `aliyun-rke2-cluster`.
+we are going to use the same Label which was used to create `edge01` and `edge02` clusters.
 
-![rancher-fleet-cluster-group-dev](assets/04-rancher-fleet-cluster-group-dev.png)
+![rancher-fleet-cluster-group-edge](assets/04-rancher-fleet-cluster-group-edge.png)
  
 Once you key in the key:value pair, Rancher will use the selector labels to indentify the clusters to be associated with our newly created cluster group in Rancher Continuous Delivery. You should see it show matches all 2 existing clusters. 
 
@@ -288,31 +284,34 @@ Click on `Create` which will create our first Cluster Group.
 
 ![rancher-fleet-cluster-group-added](assets/04-rancher-fleet-cluster-group-added.png)
 
-we can click into the `development` cluster group for resources details.
+we can click into the `edge` cluster group for resources details.
 
 ![rancher-fleet-cluster-group-details](assets/04-rancher-fleet-cluster-group-details.png)
 
 
-1. Configure a git repository
+3. Configure a git repository
 
 we will use the fleet-examples git repo to deploy the Kubernetes sample guestbook application. The app will be deployed into the default namespace.
 
-you can also fork the fleet-examples Git Repository(https://github.com/rancher/fleet-examples) for testing.
+you can also fork my fleet-examples Git Repository(https://github.com/akiliuhk/fleet-examples) for testing.
 
 In the `Git Repos` page click on `Add Repository`
 
 ![rancher-fleet-git-repo-add](assets/04-rancher-fleet-git-repo-add.png)
 
 - Enter `fleet-examples` as your git repo `Name`
-- Enter `https://github.com/rancher/fleet-examples` (the fleet-examples git repo URL) in `Repository URL`  
+- Enter `https://github.com/akiliuhk/fleet-examples` (the fleet-examples git repo URL) in `Repository URL`  
 
-- scroll to the bottom and enter Paths: `simple` , with all the parameters default setting then click **Next**
+- Enter Paths: `simple` , with all the parameters default setting then click **Next**
 
 Sample output of the GitRepo configuration below
 
-![rancher-fleet-git-repo-add-details](assets/04-rancher-fleet-git-repo-add-details.png)
+![rancher-fleet-git-repo-add-details1](assets/04-rancher-fleet-git-repo-add-details1.png)
 
-in the Step2, Deploy to `Target` dropdown list, select the Cluster Group we created previosuly `development`. 
+Scroll to bottom
+![rancher-fleet-git-repo-add-details2](assets/04-rancher-fleet-git-repo-add-details2.png)
+
+in the Step2, Deploy to `Target` dropdown list, select the Cluster Group we created previosuly `edge` and click Create. 
 
 
 ![rancher-fleet-git-repo-add-details-step2](assets/04-rancher-fleet-git-repo-add-details-step2.png)
@@ -335,6 +334,6 @@ We successfully set up a Rancher Desktop with K3s to create a local Kubernetes e
 
 As the next step, we will demo to utilize Rancher Fleet to deploy the GenAI applications into the production environment, ensuring scalability and reliability
 
-By following these steps, users can effectively simulate a production environment, test deployments, and manage large-scale applications.
+By following these steps, you can effectively simulate a production environment, test deployments, and manage GenAI app and deploy to large-scale environment.
 
 
