@@ -1,0 +1,29 @@
+ollama:
+  image:
+    tag: 0.3.9
+  resources:
+    requests:
+      cpu: "2000m"
+      memory: "2Gi"
+    limits:
+      cpu: "4000m"
+      memory: "6Gi"
+      nvidia.com/gpu: "0"
+  service:
+    type: ClusterIP
+  gpu:
+    enabled: false
+  models: ["mistral:7b"]
+  persistentVolume:
+    enabled: true
+    size: 20Gi
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "500Mi"
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+service:
+  type: NodePort
